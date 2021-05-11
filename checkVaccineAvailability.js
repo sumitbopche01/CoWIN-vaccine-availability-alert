@@ -1,6 +1,8 @@
 const getData = require("./getData");
-const getUsersList = require("./getUsersList");
+const { getUsersList } = require("./getUsersList");
 const { sendEmailNotification } = require("./sendEmailNotification");
+const { addUser } = require("./addUser");
+const firebase = require("./firebase");
 
 const checkVaccineAvailability = async () => {
   try {
@@ -21,9 +23,14 @@ const checkVaccineAvailability = async () => {
     if (fortyFivePlusCenters.length > 0) {
       sendEmailNotification("sumitbopche01@gmail.com");
     }
+
+    addUser();
+    getUsersList();
   } catch (e) {
     console.log("Error ", e);
   }
 };
 
 module.exports = checkVaccineAvailability;
+
+checkVaccineAvailability();

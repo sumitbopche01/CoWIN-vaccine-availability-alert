@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
 const dotenv = require('dotenv').config();
 
-
 // async..await is not allowed in global scope, must use a wrapper
 exports.sendEmailNotification = async (receivers) => {
   // create reusable transporter object using the default SMTP transport
