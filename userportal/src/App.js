@@ -1,9 +1,10 @@
 import "./App.css";
+import VaccineForm from "./components/VaccineForm";
 
 function App() {
   return (
     <div className="App">
-      <h1>Vaccine center</h1>
+      <VaccineForm />
     </div>
   );
 }
