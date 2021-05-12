@@ -1,28 +1,14 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #52b788;
-  height: 100vh;
-  width: 100%;
-  margin: 0;
-  max-width: 500px;
-
-  @media screen and (max-width: 400px) {
-    max-width: 375px;
-  } */
   height: 100%;
   display: flex;
   color: black;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: flex-start;
 
-  @media screen and (max-width: 480px) {
-    padding: 10px;
+  @media screen and (max-width: 450px) {
+    padding: 5px;
   }
 `;
 
@@ -38,9 +24,11 @@ export const Form = styled.form`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   background-color: white;
 
-  @media screen and (max-width: 400px) {
-    padding: 32px 32px;
-    max-width: 375px;
+  @media screen and (max-width: 450px) {
+    /* padding: 32px 32px; */
+    padding: 3px 3px;
+    margin: 1px 1px;
+    /* max-width: 400px; */
   }
 `;
 
@@ -61,6 +49,11 @@ export const FormInput = styled.input`
   border-radius: 4px;
   cursor: pointer;
   background-color: #d8f3dc;
+
+  @media screen and (max-width: 450px) {
+    width: 80%;
+    justify-self: center;
+  }
 `;
 
 export const FormButton = styled.div`
@@ -74,12 +67,32 @@ export const FormButton = styled.div`
   text-align: center;
   color: white;
   font-weight: 600;
+
+  :hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  }
+
+  @media screen and (max-width: 450px) {
+    /* padding: 8px 0; */
+  }
 `;
 
 export const Headline = styled.div`
   margin: 0 auto;
-  padding-bottom: 0px;
-  padding-top: 0px;
+  /* padding-bottom: 0px;
+  padding-top: 0px; */
+  padding: 0;
   width: 100%;
   text-align: center;
+
+  > p > a {
+    :hover {
+      color: #ffb703;
+    }
+  }
+  > h2 > a {
+    :hover {
+      color: #ffb703;
+    }
+  }
 `;
