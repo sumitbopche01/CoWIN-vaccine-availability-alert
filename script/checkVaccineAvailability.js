@@ -6,41 +6,55 @@ const { sendEmailNotification } = require("./sendEmailNotification");
 
 const checkVaccineAvailability = async () => {
   try {
-    let [sessionsListToday, sessionsListTomorrow] = await Promise.all([
-      getData("today"),
-      getData("tomorrow"),
-    ]);
-
-    sessionsListToday = sessionsListToday.sessions;
-    sessionsListTomorrow = sessionsListTomorrow.sessions;
-
     let fortyFivePlusCenters = [],
-      eighteenPlus = [];
+      eighteenPlusCenters = [],
+      eighteenPlusCount = 0,
+      fortyFivePlusCount = 0;
 
-    sessionsListToday.map((session) => {
-      if (session.min_age_limit == 18) {
-        eighteenPlus.push(session);
-      } else if (session.min_age_limit == 45) {
-        fortyFivePlusCenters.push(session);
-      }
+    // let [sessionsListToday, sessionsListTomorrow] = await Promise.all([
+    //   getData("today"),
+    //   getData("tomorrow"),
+    // ]);
+
+    // sessionsListToday = sessionsListToday.sessions;
+    // sessionsListTomorrow = sessionsListTomorrow.sessions;
+
+    let districtCode = "378";
+    let calenderVaccineData = await getData(districtCode);
+
+    calenderVaccineData.centers.map((center) => {
+      center.sessions.map((session) => {
+        console.log(session);
+        if (session.min_age_limit == 18 && session.available_capacity > 0) {
+          eighteenPlusCount++;
+        } else if (
+          session.min_age_limit == 45 &&
+          session.available_capacity > 0
+        ) {
+          fortyFivePlusCount++;
+        }
+      });
     });
 
-    sessionsListTomorrow.map((session) => {
-      if (session.min_age_limit == 18) {
-        eighteenPlus.push(session);
-      } else if (session.min_age_limit == 45) {
-        fortyFivePlusCenters.push(session);
-      }
-    });
+    // sessionsListToday.map((session) => {
+    //   if (session.min_age_limit == 18) {
+    //     eighteenPlus.push(session);
+    //   } else if (session.min_age_limit == 45) {
+    //     fortyFivePlusCenters.push(session);
+    //   }
+    // });
 
-    console.log(
-      "45+: ",
-      fortyFivePlusCenters.length,
-      " || 18+: ",
-      eighteenPlus.length
-    );
+    // sessionsListTomorrow.map((session) => {
+    //   if (session.min_age_limit == 18) {
+    //     eighteenPlus.push(session);
+    //   } else if (session.min_age_limit == 45) {
+    //     fortyFivePlusCenters.push(session);
+    //   }
+    // });
 
-    if (fortyFivePlusCenters.length > 0) {
+    console.log("45+: ", fortyFivePlusCount, " || 18+: ", eighteenPlusCount);
+
+    if (fortyFivePlusCount > 0) {
       sendEmailNotification("sumitbopche01@gmail.com");
     }
 
@@ -53,4 +67,4 @@ const checkVaccineAvailability = async () => {
 
 module.exports = checkVaccineAvailability;
 
-checkVaccineAvailability();
+// checkVaccineAvailability();
