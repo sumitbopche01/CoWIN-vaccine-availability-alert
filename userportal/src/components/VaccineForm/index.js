@@ -6,13 +6,19 @@ import {
   FormInput,
   FormButton,
   Headline,
+  FormSelect,
 } from "./FormElements";
+import stateList from "../../data/stateList.json";
+const axios = require("axios").default;
+axios.defaults.baseURL = "https://cdn-api.co-vin.in/api";
 
 function VaccineForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [ageGroup, setAgeGroup] = useState("18");
-  const [districtCode, setDistrictCode] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [districtList, setDistrictList] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,11 +28,18 @@ function VaccineForm() {
     alert("clicked");
   };
 
+  const handleStateSelection = (event) => {
+    setSelectedState(event.target.value);
+    axios.get("/v2/admin/location/districts/" + selectedState).then((res) => {
+      console.log("res.body ", res.body, res.status);
+    });
+  };
+
   return (
     <FormContainer>
       <Headline>
         <h2>
-          Get Notified Once Vaccine Slot is <br/> Available on {" "}
+          Get Notified Once Vaccine Slot is <br /> Available on{" "}
           <a
             href="https://www.cowin.gov.in/home"
             style={{ textDecoration: "none" }}
@@ -74,14 +87,27 @@ function VaccineForm() {
           onChange={(e) => setAgeGroup(e.target.value)}
         ></FormInput>
         <FormLabel htmlFor="district">
+          <span>*</span>State:{" "}
+        </FormLabel>
+        <FormSelect
+          onChange={handleStateSelection}
+          placeholder="Select your state"
+        >
+          {stateList.map((state) => (
+            <option key={state.state_id} value={state.state_id}>
+              {state.state_name}
+            </option>
+          ))}
+        </FormSelect>
+        <FormLabel htmlFor="district">
           <span>*</span>District:{" "}
         </FormLabel>
-        <FormInput
-          type="text"
-          value={name}
-          placeholder="District Code"
-          onChange={(e) => setDistrictCode(e.target.value)}
-        ></FormInput>
+        <FormSelect
+          placeholder="Select your district"
+          onChange={(e) => setSelectedDistrict(e.target.value)}
+        >
+          {}
+        </FormSelect>
         <FormButton type="submit" onClick={RegisterUser}>
           Get Notified
         </FormButton>

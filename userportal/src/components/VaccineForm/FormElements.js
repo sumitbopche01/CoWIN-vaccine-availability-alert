@@ -96,3 +96,30 @@ export const Headline = styled.div`
     }
   }
 `;
+
+export const FormSelect = styled.select`
+  padding: 16px 16px;
+  margin-bottom: 32px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #d8f3dc;
+
+  > option {
+    font-size: 20px;
+    background-color: white;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 80%;
+    justify-self: center;
+
+    > option {
+      font-size: 16px;
+    }
+  }
+`;
+
+export const FormInputList = styled.input`
+  width: 500px;
+`;
