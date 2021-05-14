@@ -7,6 +7,10 @@ export const FormContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
+  > h2 {
+    margin-top: -10px;
+  }
+
   @media screen and (max-width: 450px) {
     padding: 5px;
   }
@@ -19,7 +23,7 @@ export const Form = styled.form`
   z-index: 2;
   max-width: 500px;
   margin: 0 auto;
-  padding: 50px 32px;
+  padding: 40px 22px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   background-color: white;
@@ -43,8 +47,8 @@ export const FormLabel = styled.label`
 `;
 
 export const FormInput = styled.input`
-  padding: 16px 16px;
-  margin-bottom: 32px;
+  padding: 12px 12px;
+  margin-bottom: 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -59,6 +63,7 @@ export const FormInput = styled.input`
 export const FormButton = styled.div`
   background: #01bf71;
   padding: 16px 0;
+  margin-top: 10px;
   border: none;
   border-radius: 16px 0;
   font-size: 20px;
@@ -99,7 +104,7 @@ export const Headline = styled.div`
 
 export const FormSelect = styled.select`
   padding: 16px 16px;
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;

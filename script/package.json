@@ -2,15 +2,17 @@
   "name": "cowin-vaccine-availability-alert",
   "version": "1.0.0",
   "description": "",
-  "main": "checkVaccineAvailability.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node cronJob.js"
+    "start": "node index.js"
   },
   "author": "Sumit Bopche",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^9.0.1",
+    "express": "^4.17.1",
     "firebase": "^8.5.0",
     "firebase-admin": "^9.8.0",
     "follow-redirects": "^1.14.1",
