@@ -2,7 +2,6 @@ const db = require("../../firebase");
 const firebase = require("firebase");
 
 exports.addUser = async (data) => {
-  console.log("add user got called", data);
   const newUser = db.collection("users").doc();
   let userObject = {
     ...data,
@@ -12,6 +11,8 @@ exports.addUser = async (data) => {
     isDeleted: false,
   };
   await newUser.set(userObject);
+
+  //Check if district is already in districtsToWatch list, if not then add entry
   const isDistrictPresent = await db
     .collection("districtsToWatch")
     .where("districtId", "==", userObject.districtCode)

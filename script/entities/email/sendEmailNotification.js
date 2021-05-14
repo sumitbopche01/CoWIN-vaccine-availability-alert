@@ -1,8 +1,8 @@
 const nodemailer = require("nodemailer");
-const dotenv = require('dotenv').config();
+const dotenv = require("dotenv").config();
 
 // async..await is not allowed in global scope, must use a wrapper
-exports.sendEmailNotification = async (receivers) => {
+exports.sendEmailNotification = async (message, userEmailList) => {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -17,12 +17,12 @@ exports.sendEmailNotification = async (receivers) => {
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: "sumitbopche01@gmail.com", // sender address
-    to: receivers, // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Vaccines available at following centers</b>", // html body
+    bcc: userEmailList, // list of receivers
+    subject: "Vaccine Available in your area ✔", // Subject line
+    text: "Hi ", // plain text body
+    html: `<b>${message}</b>`, // html body
   });
 
-  console.log("Message sent: %s");
+  console.log("Email sent");
   return true;
 };

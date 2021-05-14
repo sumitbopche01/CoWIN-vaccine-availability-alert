@@ -1,8 +1,15 @@
 const cron = require("node-cron");
+const { getDistrictsToWatch } = require("./services/getDistrictsToWatch");
+const checkVaccineAvailability = require("./entities/availability/checkVaccineAvailability");
 
-const checkVaccineAvailability = require("./checkVaccineAvailability");
+const startCronJob = async () => {
+  cron.schedule("30 * * * * *", async () => {
+    let districtsToWatch = await getDistrictsToWatch();
+    console.log("cron called ", districtsToWatch);
+    districtsToWatch.map((district) => {
+      checkVaccineAvailability(district.districtId);
+    });
+  });
+};
 
-cron.schedule("* * * * *", () => {
-  console.log("cron called ");
-  checkVaccineAvailability()
-});
+module.exports = startCronJob;
