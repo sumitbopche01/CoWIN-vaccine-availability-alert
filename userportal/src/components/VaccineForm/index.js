@@ -36,7 +36,7 @@ function VaccineForm() {
       };
 
       // let url = "http://localhost:3456/user";
-      let url = "http:ec2-15-206-28-251.ap-south-1.compute.amazonaws.com:3456/user";
+      let url = "http://ec2-15-206-28-251.ap-south-1.compute.amazonaws.com:3456/user";
       axios
         .post(url, user)
         .then((res) => {
@@ -55,7 +55,7 @@ function VaccineForm() {
       setAgeGroup("18");
       setSelectedState("");
       setSelectedDistrict("");
-      setDistrictList([]);
+      // setDistrictList([]);
     } else {
       alert("Please please required fields");
     }
