@@ -1,14 +1,14 @@
 FROM node:15-alpine
 
-RUN mkdir /script && chown -R node:node /script
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
-WORKDIR /script
-
-USER node
+WORKDIR /home/node/app
 
 COPY --chown=node:node package*.json ./
 
-RUN npm install --no-optional && npm cache clean --force
+USER node
+
+RUN npm install
 
 COPY --chown=node:node . .
 
