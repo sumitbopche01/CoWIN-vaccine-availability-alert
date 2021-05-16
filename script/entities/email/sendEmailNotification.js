@@ -3,7 +3,7 @@ const { getEmailBody } = require("./emailBody");
 const dotenv = require("dotenv").config();
 
 // async..await is not allowed in global scope, must use a wrapper
-exports.sendEmailNotification = async (messageData, userEmailList) => {
+exports.sendEmailNotification = async (messageData, userEmail) => {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -18,7 +18,7 @@ exports.sendEmailNotification = async (messageData, userEmailList) => {
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: "sumitbopche01@gmail.com", // sender address
-    bcc: userEmailList, // list of receivers
+    to: userEmail, // list of receivers
     subject: "Vaccine Available in your area ✔", // Subject line
     text: "Hi ", // plain text body
     html: getEmailBody(messageData),
