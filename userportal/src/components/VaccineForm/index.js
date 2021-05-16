@@ -36,7 +36,8 @@ function VaccineForm() {
       };
 
       // let url = "http://localhost:3456/user";
-      let url = "https://ec2-15-206-28-251.ap-south-1.compute.amazonaws.com/user";
+      let url = "https://www.baradana.in/user";
+
       axios
         .post(url, user)
         .then((res) => {
