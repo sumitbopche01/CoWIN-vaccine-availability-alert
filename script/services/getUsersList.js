@@ -8,6 +8,7 @@ exports.getUsersList = async (ageGroup, districtCode) => {
     .where("ageGroup", "==", ageGroup)
     .where("districtCode", "==", districtCode)
     .where("isNotified", "==", false)
+    // .where('noOfNotification', "<", 2)
     .get();
 
   snapshot.forEach((doc) => {
