@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import stateList from "../../data/stateList.json";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import {
   FormContainer,
   Form,
@@ -19,13 +20,13 @@ function VaccineForm() {
   const [districtList, setDistrictList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   // const [stateList] = useState(ListStates);
+  let history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
 
   const RegisterUser = () => {
-    console.log(name, email, ageGroup, selectedDistrict, selectedState);
     if (email && selectedDistrict && selectedState) {
       let user = {
         name: name,
@@ -42,7 +43,10 @@ function VaccineForm() {
         .post(url, user)
         .then((res) => {
           if (res.status === 200) {
-            alert("Succefully Submitted!");
+            setName("");
+            setEmail("");
+            setAgeGroup("18");
+            history.push('/result');
           } else {
             alert("Something went wrong. Please try again later");
           }
@@ -51,11 +55,8 @@ function VaccineForm() {
           alert(error);
         });
 
-      setName("");
-      setEmail("");
-      setAgeGroup("18");
-      setSelectedState("");
-      setSelectedDistrict("");
+      // setSelectedState("");
+      // setSelectedDistrict("");
       // setDistrictList([]);
     } else {
       alert("Please please required fields");

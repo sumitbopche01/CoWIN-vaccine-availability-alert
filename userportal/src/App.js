@@ -1,11 +1,16 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import "./App.css";
+import ResultInfo from './components/ResultInfo';
 import VaccineForm from "./components/VaccineForm";
 
 function App() {
   return (
-    <div className="App">
-      <VaccineForm />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" component={VaccineForm} exact/>
+        <Route path="/result" component={ResultInfo} />
+      </Switch>
+    </Router>
   );
 }
 
