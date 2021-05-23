@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import stateList from "../../data/stateList.json";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import {
   FormContainer,
   Form,
@@ -11,6 +11,8 @@ import {
   Headline,
   FormSelect,
 } from "./FormElements";
+import { useDispatch } from "react-redux";
+import { selectedDistrictCode } from "../../redux/actions/userActions";
 
 function VaccineForm() {
   const [name, setName] = useState("");
@@ -19,6 +21,9 @@ function VaccineForm() {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [districtList, setDistrictList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
+
+  const dispatch = useDispatch();
+
   // const [stateList] = useState(ListStates);
   let history = useHistory();
 
@@ -36,6 +41,8 @@ function VaccineForm() {
         stateCode: selectedState,
       };
 
+      console.log("before dispatch ", selectedDistrict);
+      dispatch(selectedDistrictCode(selectedDistrict));
       // let url = "http://localhost:3456/user";
       let url = "https://www.baradana.in/user";
 
@@ -46,7 +53,7 @@ function VaccineForm() {
             setName("");
             setEmail("");
             setAgeGroup("18");
-            history.push('/result');
+            history.push("/result");
           } else {
             alert("Something went wrong. Please try again later");
           }
@@ -64,20 +71,12 @@ function VaccineForm() {
   };
 
   const handleStateSelection = async (event) => {
-    console.log(event.target.value);
-
-    await setSelectedState(event.target.value);
-
-    console.log("state id ", selectedState);
+    setSelectedState(event.target.value);
     let url = `https://cdn-api.co-vin.in/api/v2/admin/location/districts/${event.target.value}`;
-    console.log("url, ", url);
     axios.get(url).then((res) => {
-      console.log("res.body ", res);
       if (res.status === 200) {
         let list = res.data.districts;
-        console.log(list);
         setDistrictList(list);
-        console.log(districtList);
       }
     });
   };

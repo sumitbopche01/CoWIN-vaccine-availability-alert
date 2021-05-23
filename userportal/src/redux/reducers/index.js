@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { districtReducer } from "./userReducer";
 
 const reducers = combineReducers({
-  districtCode: districtReducer,
+  district: districtReducer,
 });
 
 export default reducers;
