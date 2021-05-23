@@ -6,7 +6,6 @@ const sendEmail = require("../email/sendEmail");
  */
 const checkVaccineAvailability = async (districtCode) => {
   try {
-    console.log("check vaacine ", districtCode);
     let eighteenPlusCount = 0,
       fortyFivePlusCount = 0;
     //get Data from cowin api

@@ -2,7 +2,6 @@ const db = require("../firebase");
 
 exports.getUsersList = async (ageGroup, districtCode) => {
   let usersList = [];
-  console.log(ageGroup, districtCode, "get users");
   const snapshot = await db
     .collection("users")
     .where("ageGroup", "==", ageGroup)
