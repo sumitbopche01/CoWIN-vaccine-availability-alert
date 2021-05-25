@@ -14,19 +14,20 @@ const getCurrentAvailableCenters = async (data) => {
     }
 
     calenderVaccineData.centers.map((center) => {
-      center.sessions.filter(
+      let filteredSessions = center.sessions.filter(
         (session) =>
           session.min_age_limit == ageGroup &&
           session.vaccine == vaccineName &&
           session[doseFilter] > 0
       );
+      center.sessions = filteredSessions;
     });
 
-    calenderVaccineData.centers.filter((center) => center.sessions.length > 0);
+    let filteredCenters = calenderVaccineData.centers.filter((center) => center.sessions.length > 0);
 
     let responseObj = {
       status: true,
-      data: calenderVaccineData,
+      data: filteredCenters,
       message: null,
     };
     return responseObj;

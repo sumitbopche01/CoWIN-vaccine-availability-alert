@@ -1,7 +1,7 @@
 const getCurrentAvailableCenters = require("../entities/availability/getCurrentAvailableCenters");
 
 const AvailableCenters = async (req, res) => {
-  let { ageGroup, districtCode, vaccineName, feeType, doseNo } = req.params;
+  let { ageGroup, districtCode, vaccineName, feeType, doseNo } = req.query;
 
   if (!ageGroup || !districtCode || !vaccineName || !feeType || !doseNo) {
     return res.send({
@@ -11,7 +11,7 @@ const AvailableCenters = async (req, res) => {
     });
   }
 
-  let resData = await getCurrentAvailableCenters(req.params);
+  let resData = await getCurrentAvailableCenters(req.query);
   return res.send(resData);
 };
 
