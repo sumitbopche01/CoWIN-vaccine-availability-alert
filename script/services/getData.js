@@ -2,10 +2,10 @@ var https = require("follow-redirects").https;
 
 /**
  * 
- * @param {String} district_code 
+ * @param {String} districtCode 
  * @returns 
  */
-const getData = (district_code) => {
+const getData = (districtCode) => {
   return new Promise((resolve, reject) => {
     let today = new Date();
     let dateString =
@@ -18,7 +18,7 @@ const getData = (district_code) => {
     let options = {
       method: "GET",
       hostname: "cdn-api.co-vin.in",
-      path: `/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${district_code}&date=${dateString}`,
+      path: `/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${districtCode}&date=${dateString}`,
       headers: {},
       maxRedirects: 20,
     };

@@ -4,6 +4,7 @@ const startCronJob = require("./cronJob");
 
 const dotenv = require("dotenv");
 const { AddUser } = require("./controllers/users");
+const AvailableCenters = require("./controllers/availableCenters");
 
 const app = express();
 dotenv.config();
@@ -18,6 +19,8 @@ app.get("/", (req, res) => {
 });
 
 app.post(`/user`, AddUser);
+
+app.get(`/availablecenters`, AvailableCenters);
 
 app.listen(port, () => {
   console.log("Listening on port ", port);
