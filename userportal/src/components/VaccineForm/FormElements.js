@@ -8,7 +8,7 @@ export const FormContainer = styled.div`
   align-items: flex-start;
 
   > h2 {
-    margin-top: -10px;
+    /* margin-top: -10px; */
   }
 
   @media screen and (max-width: 450px) {
@@ -23,7 +23,8 @@ export const Form = styled.form`
   z-index: 2;
   max-width: 500px;
   margin: 0 auto;
-  padding: 40px 22px;
+  padding: 22px 22px;
+  padding-top: 5px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   background-color: white;
@@ -48,7 +49,7 @@ export const FormLabel = styled.label`
 
 export const FormInput = styled.input`
   padding: 12px 12px;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px;  */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -104,7 +105,7 @@ export const Headline = styled.div`
 
 export const FormSelect = styled.select`
   padding: 16px 16px;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -127,4 +128,15 @@ export const FormSelect = styled.select`
 
 export const FormInputList = styled.input`
   width: 500px;
+`;
+
+export const VaccineSelect = styled.div`
+  display: flex;
+  background-color: #d8f3dc;
+  padding: 16px 16px;
+  margin-right: 5px;
+  /* margin-bottom: 12px; */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 `;

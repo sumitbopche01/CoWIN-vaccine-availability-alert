@@ -10,6 +10,7 @@ import {
   FormButton,
   Headline,
   FormSelect,
+  VaccineSelect,
 } from "./FormElements";
 import { useDispatch } from "react-redux";
 import { selectedDistrictCode } from "../../redux/actions/userActions";
@@ -21,6 +22,8 @@ function VaccineForm() {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [districtList, setDistrictList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
+  const [vaccineName, setVaccineName] = useState("COVISHIELD");
+  const [doseNo, setDoseNo] = useState("1");
 
   const dispatch = useDispatch();
 
@@ -32,19 +35,22 @@ function VaccineForm() {
   };
 
   const RegisterUser = () => {
-    if (email && selectedDistrict && selectedState) {
+    if (email && selectedDistrict && selectedState && vaccineName && doseNo) {
       let user = {
         name: name,
         email: email,
         ageGroup: ageGroup,
         districtCode: selectedDistrict,
         stateCode: selectedState,
+        vaccineName,
+        doseNo,
       };
 
-      console.log("before dispatch ", selectedDistrict);
+      console.log("before dispatch ", selectedDistrict, vaccineName, doseNo);
+
       dispatch(selectedDistrictCode(selectedDistrict));
-      // let url = "http://localhost:3456/user";
-      let url = "https://www.baradana.in/user";
+      let url = "http://localhost:3456/user";
+      // let url = "https://www.baradana.in/user";
 
       axios
         .post(url, user)
@@ -143,6 +149,58 @@ function VaccineForm() {
             45+
           </option>
         </FormSelect>
+        <FormLabel htmlFor="ageGroup">
+          <span>*</span>Select Vaccine:{" "}
+        </FormLabel>
+        <VaccineSelect>
+          <input
+            type="radio"
+            id="COVISHIELD"
+            name="vaccine"
+            value="COVISHIELD"
+            onChange={(e) => setVaccineName(e.target.value)}
+          />{" "}
+          Covishield
+          <input
+            type="radio"
+            id="COVAXIN"
+            name="vaccine"
+            value="COVAXIN"
+            onChange={(e) => setVaccineName(e.target.value)}
+          />
+          Covaxin
+          <input
+            type="radio"
+            id="SPUTNIK V"
+            name="vaccine"
+            value="SPUTNIK V"
+            onChange={(e) => setVaccineName(e.target.value)}
+          />
+          Sputnik V
+        </VaccineSelect>
+
+        <FormLabel htmlFor="district">
+          <span>*</span>Select Dose:{" "}
+        </FormLabel>
+        <VaccineSelect>
+          <input
+            type="radio"
+            id="dose1"
+            name="whichDose"
+            value="1"
+            onChange={(e) => setDoseNo(e.target.value)}
+          />{" "}
+          Dose 1
+          <input
+            type="radio"
+            id="dose2"
+            name="whichdDose"
+            value="2"
+            onChange={(e) => setDoseNo(e.target.value)}
+          />
+          Dose 2
+        </VaccineSelect>
+
         <FormLabel htmlFor="district">
           <span>*</span>State:{" "}
         </FormLabel>
